@@ -141,7 +141,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-'''
+
 
 DATABASES = {
     'default': {
@@ -154,14 +154,14 @@ DATABASES = {
         'HOST':'localhost',
     }
 }
-'''
- 
 
+ 
+'''
 DATABASES = {
     'default': dj_database_url.parse(env('DATABASE_URL'))
  }
 
-
+'''
 
 #AUTHENTICATION_BACKENDS = [
   #  'django.contrib.auth.backends.ModelBackend', # This is the default that allows us to log in via username

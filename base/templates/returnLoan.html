@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Return Loan</title>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+  
+      background: linear-gradient(134deg, #1fa87d 0%, #1b7c5dab 100%);
+      color: rgba(0, 0, 0, 0.6);
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      line-height: 1.6em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .overlay,
+    .form-panel.one:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      background: rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 100%;
+    }
+
+    .form {
+      z-index: 15;
+      position: relative;
+      background: #FFFFFF;
+      width: 600px;
+      border-radius: 4px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      margin: 30px auto 10px;
+      overflow: hidden;
+    }
+
+    .form-toggle {
+      z-index: 10;
+      position: absolute;
+      top: 60px;
+      right: 60px;
+      background: #FFFFFF;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      transform-origin: center;
+      transform: translate(0, -25%) scale(0);
+      opacity: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-toggle:before,
+    .form-toggle:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 4px;
+      background: #2dc997;
+      transform: translate(-50%, -50%);
+    }
+
+    .form-toggle:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .form-toggle:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .form-toggle.visible {
+      transform: translate(0, -25%) scale(1);
+      opacity: 1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 0 10px;
+    }
+
+    .form-group:last-child {
+      margin: 0;
+    }
+
+    .form-group label {
+      display: block;
+      margin: 0 0 10px;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .two .form-group label {
+      color: #FFFFFF;
+    }
+
+    .form-group input,
+    p,select {
+      outline: none;
+      display: block;
+      background: rgba(0, 0, 0, 0.048);
+      width: 100%;
+      border: 1px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      color: rgba(0, 0, 0, 0.6);
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 500;
+      line-height: inherit;
+      transition: 0.3s ease;
+    }
+
+    .form-group input:focus {
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    .two .form-group input {
+      color: #FFFFFF;
+    }
+
+    .two .form-group input:focus {
+      color: #FFFFFF;
+    }
+
+    .form-group button {
+      outline: none;
+      background: #2dc997;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      padding: 12px 20px;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 500;
+      line-height: inherit;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .two .form-group button {
+      background: #FFFFFF;
+      color: #2dc997;
+    }
+
+    .form-group .form-remember {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .form-group .form-remember input[type=checkbox] {
+      display: inline-block;
+      width: auto;
+      margin: 0 10px 0 0;
+    }
+
+    .form-group .form-recovery {
+      color: #2dc997;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .form-panel {
+      padding: 10px calc(5% + 60px) 30px 60px;
+      box-sizing: border-box;
+    }
+
+    .form-panel.one:before {
+      content: "";
+      display: block;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s ease;
+    }
+
+    .form-panel.one.hidden:before {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .form-panel.two {
+      z-index: 5;
+      position: absolute;
+      top: 0;
+      left: 95%;
+      background: #2dc997;
+      width: 100%;
+      min-height: 120%;
+      padding: 60px calc(10% + 60px) 60px 60px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .form-panel.two:before,
+    .form-panel.two:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 60px;
+      left: 1.5%;
+      background: rgba(255, 255, 255, 0.2);
+      height: 30px;
+      width: 2px;
+      transition: 0.3s ease;
+    }
+
+    .form-panel.two:after {
+      left: 3%;
+    }
+
+    .form-panel.two:hover {
+      left: 93%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-panel.two:hover:before,
+    .form-panel.two:hover:after {
+      opacity: 0;
+    }
+
+    .form-panel.two.active {
+      left: 10%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      cursor: default;
+    }
+
+    .form-panel.two.active:before,
+    .form-panel.two.active:after {
+      opacity: 0;
+    }
+
+    .form-header {
+      margin: 0 0 10px;
+    }
+
+    .form-header h1 {
+      padding: 10px 0;
+      color: #2dc997;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .two .form-header h1 {
+      position: relative;
+      z-index: 40;
+      color: #FFFFFF;
+    }
+
+    .pen-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 600px;
+      margin: 20px auto 100px;
+    }
+
+    .pen-footer a {
+      color: #FFFFFF;
+      font-size: 12px;
+      text-decoration: none;
+      text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .pen-footer a .material-icons {
+      width: 12px;
+      margin: 0 5px;
+      vertical-align: middle;
+      font-size: 12px;
+    }
+
+    .cp-fab {
+      background: #FFFFFF !important;
+      color: #2dc997 !important;
+    }
+
+
+    @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+    @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+    .fa-2x {
+      font-size: 3em;
+    }
+
+    .fa {
+      position: relative;
+      display: table-cell;
+      width: 60px;
+      height: 36px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 30px;
+    }
+
+
+    .main-menu:hover,
+    nav.main-menu.expanded {
+      width: 250px;
+      overflow: visible;
+    }
+
+    .main-menu {
+      background-color: rgba(0, 0, 0, 0.9);
+
+      border-right: 0px solid #e5e5e5;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      width: 60px;
+      overflow: hidden;
+      -webkit-transition: width .05s linear;
+      transition: width .05s linear;
+      -webkit-transform: translateZ(0) scale(1, 1);
+      z-index: 1000;
+    }
+
+
+    .main-menu>ul {
+      margin: 7px 0;
+    }
+
+    .main-menu li {
+      padding-top: 10px;
+      position: relative;
+      display: block;
+      width: 250px;
+    }
+
+    .main-menu li>a {
+
+      position: relative;
+      display: table;
+      border-collapse: collapse;
+      border-spacing: 0;
+      color: #ecf0f1;
+      font-family: arial;
+      font-size: 14px;
+      text-decoration: none;
+      -webkit-transform: translateZ(0) scale(1, 1);
+      -webkit-transition: all .1s linear;
+      transition: all .1s linear;
+
+    }
+
+    .main-menu .nav-icon {
+      position: relative;
+      display: table-cell;
+      width: 60px;
+      height: 36px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 30px;
+    }
+
+    .main-menu .nav-text {
+      padding-right: 18px;
+      position: relative;
+      display: table-cell;
+      vertical-align: middle;
+      width: 190px;
+      font-family: 'Titillium Web', sans-serif;
+    }
+
+    .main-menu>ul.logout {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    .no-touch .scrollable.hover {
+      overflow-y: hidden;
+    }
+
+    .no-touch .scrollable.hover:hover {
+      overflow-y: auto;
+      overflow: visible;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+
+    nav {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+    }
+
+    nav ul,
+    nav li {
+      outline: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-menu li:hover>a,
+    nav.main-menu li.active>a,
+    .dropdown-menu>li>a:hover,
+    .dropdown-menu>li>a:focus,
+    .dropdown-menu>.active>a,
+    .dropdown-menu>.active>a:hover,
+    .dropdown-menu>.active>a:focus,
+    .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+    .dashboard-page nav.dashboard-menu ul li.active a {
+      color: #2dc997;
+
+    }
+
+    .area {
+      float: left;
+      width: 100%;
+      height: 100%;
+    }
+
+    @font-face {
+      font-family: 'Titillium Web';
+      font-style: normal;
+      font-weight: 300;
+      src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+    }
+
+    .h1 {
+      font-family: "Sans-serif";
+      font-weight: bold;
+      color: black;
+
+    }
+
+    .btnrow {
+      display: inline-block;
+      margin: 0 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="main-menu">
+    <ul>
+    </br>
+        <li>
+            <a href="{% url 'userdash' %}">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                   <h6>Home</h6>
+                </span>
+            </a>
+       
+        </li>
+    </br>
+        <li class="has-subnav">
+            <a href="{% url 'applyaid' %}">
+                <i class="fa fa-id-badge fa-2x"></i>
+                <span class="nav-text">
+                    <h6>Apply Aid</h6>
+                </span>
+            </a>
+            
+        </li>
+    </br>
+        <li class="has-subnav">
+            <a href="{% url 'viewprofile' %}">
+               <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">
+                    <h6>View Profile</h6>
+                </span>
+            </a>
+            
+        </li>
+    </br>
+        <li class="has-subnav">
+            <a href="{% url 'viewstatus' %}">
+               <i class="fa fa-id-card fa-2x"></i>
+                <span class="nav-text">
+                    <h6>View Status</h6>
+                </span>
+            </a>
+           
+        </li>
+    </br>
+        <li>
+            <a href="{% url 'returnloan' %}">
+                <i class="fa fa-credit-card fa-2x"></i>
+                <span class="nav-text">
+                    <h6>Return Loan</h6>
+                </span>
+            </a>
+        </li>
+    </br>
+    <ul class="logout">
+        <li>
+           <a href="{% url 'logout' %}">
+                 <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                    <h6>Log Out</h6>
+                </span>
+            </a>
+        </li>  
+    </ul>
+</nav>
+  <!-- Form-->
+  <div class="form"  >
+    
+    <div class="form-toggle"></div>
+    <div class="form-panel one">
+      <div class="form-header">
+        <h1>Submit Details</h1>
+      </div>
+      <div class="form-content">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="amount">Amount Deposited</label>
+            <select name="mode" id="cars">
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="onlineTransfer">Online Transfer</option>
+              <option value="cheque">Direct Deposit</option>
+              <option value="other">Others</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount Deposited</label>
+            <input type="number" id="amount" name="amount" required="required" min="0" max="500000" />
+          </div>
+          <div class="form-group">
+            <label for="source">Transaction ID</label>
+            <input type="text" id="source" name="source" required="required" pattern="[a-zA-Z0-9 ]+" />
+          </div>
+          <div class="form-group">
+            <label for="date">Date of Transaction</label>
+            <input type="date" id="date" name="date" required="required" />
+          </div>
+          <div class="form-group">
+            <label for="slip">Upload Receipt</label>
+            <input type="file" id="slip" name="slip" required="required" accept=".jpg, .jpeg, .png, .pdf" />
+          </div>
+          <div><a>click on right bar for Bank Details</a></div>
+          <br>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="form-panel two">
+      <div class="form-header">
+        <h1>Account Details</h1>
+      </div>
+      <div class="form-content">
+        <div>
+          <div class="form-group">
+            <label for="">Bank Name</label>
+            <p>Faysal Bank Limited</p>
+          </div>
+          <div class="form-group">
+            <label for="">Bank Branch</label>
+            <p>FAST-ISD</p>
+          </div>
+          <div class="form-group">
+            <label for="">Account Details</label>
+            <p>0169007900148617</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    $(document).ready(function () {
+      var panelOne = $(".form-panel.two").height(),
+        panelTwo = $(".form-panel.two")[0].scrollHeight;
+
+      $(".form-panel.two")
+        .not(".form-panel.two.active")
+        .on("click", function (e) {
+          e.preventDefault();
+
+          $(".form-toggle").addClass("visible");
+          $(".form-panel.one").addClass("hidden");
+          $(".form-panel.two").addClass("active");
+          $(".form").animate(
+            {
+              height: panelTwo
+            },
+            200
+          );
+        });
+
+      $(".form-toggle").on("click", function (e) {
+        e.preventDefault();
+        $(this).removeClass("visible");
+        $(".form-panel.one").removeClass("hidden");
+        $(".form-panel.two").removeClass("active");
+        $(".form").animate(
+          {
+            height: panelOne
+          },
+          200
+        );
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

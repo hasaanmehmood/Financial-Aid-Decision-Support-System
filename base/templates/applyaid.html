@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+    <link rel="mask-icon" type="image/x-icon"
+        href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg"
+        color="#111">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <title>Apply Aid</title>
+    <style>
+        body {
+            color: #000;
+            overflow-x: hidden;
+            height: 100%;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            z-index: 0;
+            background-color: #ffffff;
+            padding-bottom: 30px;
+            margin-top: 90px;
+            margin-bottom: 90px;
+            border-radius: 10px;
+        }
+
+        .top {
+            padding-top: 40px;
+            padding-left: 13% !important;
+            padding-right: 13% !important;
+        }
+
+        /*Icon progressbar*/
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: #455A64;
+            padding-left: 0px;
+            margin-top: 30px;
+        }
+
+        #progressbar li {
+            list-style-type: none;
+            font-size: 13px;
+            width: 25%;
+            float: left;
+            position: relative;
+            font-weight: 400;
+        }
+
+        #progressbar .step0:before {
+            font-family: FontAwesome;
+            content: "\f10c";
+            color: #fff;
+        }
+
+        #progressbar li:before {
+            width: 40px;
+            height: 40px;
+            line-height: 45px;
+            display: block;
+            font-size: 20px;
+            background: #C5CAE9;
+            border-radius: 50%;
+            margin: auto;
+            padding: 0px;
+        }
+
+
+        .error {
+            color: red;
+            display: inline;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .input-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        input.invalid {
+            border-color: red;
+        }
+
+
+
+        /*ProgressBar connectors*/
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 12px;
+            background: #C5CAE9;
+            position: absolute;
+            left: 0;
+            top: 16px;
+            z-index: -1;
+        }
+
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            left: -50%;
+        }
+
+        #progressbar li:nth-child(2):after,
+        #progressbar li:nth-child(3):after {
+            left: -50%;
+        }
+
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            position: absolute;
+            left: 50%;
+        }
+
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        /*Color number of the step and the connector before it*/
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #2dc997;
+        }
+
+        #progressbar li.active:before {
+            font-family: FontAwesome;
+            content: "\f00c";
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .icon-content {
+            padding-bottom: 20px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .icon-content {
+                width: 50%;
+            }
+        }
+
+
+        @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+        @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+        .fa-2x {
+            font-size: 2em;
+        }
+
+        .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 30px;
+        }
+
+
+        .main-menu:hover,
+        nav.main-menu.expanded {
+            width: 250px;
+            overflow: visible;
+        }
+
+        .main-menu {
+            background-color: rgba(0, 0, 0, 0.9);
+
+            border-right: 0px solid #e5e5e5;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            width: 60px;
+            overflow: hidden;
+            -webkit-transition: width .05s linear;
+            transition: width .05s linear;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            z-index: 1000;
+        }
+
+
+        .main-menu>ul {
+            margin: 7px 0;
+        }
+
+        .main-menu li {
+            padding-top: 10px;
+            position: relative;
+            display: block;
+            width: 250px;
+        }
+
+        .main-menu li>a {
+
+            position: relative;
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 0;
+            color: #ecf0f1;
+            font-family: arial;
+            font-size: 14px;
+            text-decoration: none;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            -webkit-transition: all .1s linear;
+            transition: all .1s linear;
+
+        }
+
+        .main-menu .nav-icon {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+        }
+
+        .main-menu .nav-text {
+            padding-right: 14px;
+            position: relative;
+            display: table-cell;
+            vertical-align: middle;
+            width: 190px;
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        .main-menu>ul.logout {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .no-touch .scrollable.hover {
+            overflow-y: hidden;
+        }
+
+        .no-touch .scrollable.hover:hover {
+            overflow-y: auto;
+            overflow: visible;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: none;
+        }
+
+        nav {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        nav ul,
+        nav li {
+            outline: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-menu li:hover>a,
+        nav.main-menu li.active>a,
+        .dropdown-menu>li>a:hover,
+        .dropdown-menu>li>a:focus,
+        .dropdown-menu>.active>a,
+        .dropdown-menu>.active>a:hover,
+        .dropdown-menu>.active>a:focus,
+        .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+        .dashboard-page nav.dashboard-menu ul li.active a {
+            color: #2dc997;
+
+        }
+
+        .area {
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
+
+        @font-face {
+            font-family: 'Titillium Web';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+        }
+
+
+        /*--------------------------------------------------------------
+# Disable AOS delay on mobile
+--------------------------------------------------------------*/
+        @media screen and (max-width: 768px) {
+            [data-aos-delay] {
+                transition-delay: 0 !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            height: 100%
+        }
+
+        p {
+            color: grey
+        }
+
+        #heading {
+            text-transform: uppercase;
+            color: #2dc997;
+            font-weight: normal
+        }
+
+        #msform {
+            text-align: center;
+            position: relative;
+            margin-top: 20px
+        }
+
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            padding-bottom: 20px;
+            position: relative
+        }
+
+        .form-card {
+            text-align: left
+        }
+
+        #msform fieldset:not(:first-of-type) {
+            display: none
+        }
+
+        #msform input,
+        #msform textarea {
+            padding: 8px 15px 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 0px;
+            margin-bottom: 25px;
+            margin-top: 2px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            background-color: #ECEFF1;
+            font-size: 16px;
+            letter-spacing: 1px
+        }
+
+        #msform input:focus,
+        #msform textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #2dc997;
+            outline-width: 0
+        }
+
+        #msform .action-button {
+            width: 100px;
+            background: #2dc997;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 0px 10px 5px;
+            float: right
+        }
+
+        #msform .action-button:hover,
+        #msform .action-button:focus {
+            background-color: #000000
+        }
+
+        #msform .action-button-previous {
+            width: 100px;
+            background: #616161;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 0px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px 10px 0px;
+            float: right
+        }
+
+        #msform .action-button-previous:hover,
+        #msform .action-button-previous:focus {
+            background-color: #000000
+        }
+
+        .card {
+            z-index: 0;
+            border: none;
+            position: relative
+        }
+
+        .fs-title {
+            font-size: 25px;
+            color: #2dc997;
+            margin-bottom: 15px;
+            font-weight: normal;
+            text-align: left
+        }
+
+        .purple-text {
+            color: #2dc997;
+            font-weight: normal
+        }
+
+        .steps {
+            font-size: 25px;
+            color: gray;
+            margin-bottom: 10px;
+            font-weight: normal;
+            text-align: right
+        }
+
+        .fieldlabels {
+            color: gray;
+            text-align: left
+        }
+
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: lightgrey
+        }
+
+        #progressbar .active {
+            color: #2dc997
+        }
+
+        #progressbar li {
+            list-style-type: none;
+            font-size: 15px;
+            width: 25%;
+            float: left;
+            position: relative;
+            font-weight: 400
+        }
+
+        #progressbar #account:before {
+            font-family: FontAwesome;
+            content: "\f007"
+        }
+
+        #progressbar #personal:before {
+            font-family: FontAwesome;
+            content: "\f129"
+        }
+
+        #progressbar #payment:before {
+            font-family: FontAwesome;
+            content: "\f15b"
+        }
+
+        #progressbar #confirm:before {
+            font-family: FontAwesome;
+            content: "\f00c"
+        }
+
+        #progressbar li:before {
+            width: 50px;
+            height: 50px;
+            line-height: 45px;
+            display: block;
+            font-size: 20px;
+            color: #ffffff;
+            background: lightgray;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            padding: 2px
+        }
+
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: lightgray;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            z-index: -1
+        }
+
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #2dc997
+        }
+
+        .progress {
+            height: 20px
+        }
+
+        .progress-bar {
+            background-color: #2dc997
+        }
+
+        .fit-image {
+            width: 100%;
+            object-fit: cover
+        }
+    </style>
+</head>
+<script>
+    window.console = window.console || function (t) { };
+</script>
+
+<body>
+    <nav class="main-menu">
+        <ul>
+            </br>
+            <li>
+                <a href="{% url 'userdash' %}">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Home</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'applyaid' %}">
+                    <i class="fa fa-id-badge fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Apply Aid</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'viewprofile' %}">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>View Profile</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'viewstatus' %}">
+                    <i class="fa fa-id-card fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>View Status</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li>
+                <a href="#">
+                    <i class="fa fa-credit-card fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Return Loan</h6>
+                    </span>
+                </a>
+            </li>
+            </br>
+            <ul class="logout">
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            <h6>Log Out</h6>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2 id="heading">Submit Your Aid Application</h2>
+                    <p>Fill all form field to go to next step</p>
+                    <form enctype="multipart/form-data" class="needs-validation" action="" method="post" id="msform">
+                        {% csrf_token %}
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active" id="account"><strong>Idendity</strong></li>
+                            <li id="personal"><strong>Details</strong></li>
+                            <li id="payment"><strong>Documents</strong></li>
+                            <li id="confirm"><strong>Finish</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> <br> <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Personal Information:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 1 - 4</h2>
+                                    </div>
+                                </div>
+                                <label class="fieldlabels" for="name">Name: *</label>
+                                <input id="username" type="text" placeholder="Full Name" id="name" class="floatLabel"
+                                    name="name" maxlength="30">
+
+                                <label class="fieldlabels" for="roll">Roll No: *</label>
+                                <input id="roll" placeholder="19F-XXXX" type="text" id="roll" pattern="\d\dF-\d\d\d\d"
+                                    class="floatLabel" name="roll" maxlength="8">
+
+                                <label class="fieldlabels" for="roll">Current Cgpa: *</label>
+                                <input placeholder="X.XX" type="floatformat" id="cgpa" class="floatLabel" name="cgpa"
+                                    maxlength="8">
+
+                                <label class="fieldlabels" for="fname">Father Name: *</label>
+                                <input id="fname" placeholder="Father Name" type="text" id="fname" class="floatLabel"
+                                    name="fname" maxlength="30">
+
+                                <label class="fieldlabels" for="phone">Phone: *</label>
+                                <input placeholder="03XXXXXXXXX" type="tel" id="phone" class="floatLabel"
+                                    pattern="\d\d\d\d\d\d\d\d\d\d\d" name="phone" maxlength="12">
+
+                                <label class="fieldlabels">Alternate Contact No.: *</label>
+                                <input placeholder="03XXXXXXXXX" type="tel" id="phone2" class="floatLabel"
+                                    pattern="\d\d\d\d\d\d\d\d\d\d\d" name="phone2" maxlength="12">
+
+                                <label class="fieldlabels" for="cnic">CNIC: * </label>
+                                <input placeholder="XXXXX-XXXXXXX-X" id="cnic" type="text" id="cnic"
+                                    pattern="\d\d\d\d\d-\d\d\d\d\d\d\d-\d" class="floatLabel" name="cnic"
+                                    maxlength="15">
+
+                                <label class="fieldlabels" for="email">Email: *</label>
+                                <input placeholder="fxxxxxx@nu.edu.pk" type="text" id="email" class="floatLabel"
+                                    name="email" maxlength="50">
+
+                                <label class="fieldlabels" for="address">Address: *</label>
+                                <input placeholder="XYZ Rd, ABC City" id="address" type="text" id="address"
+                                    class="floatLabel" name="address" maxlength="15">
+
+                                <label class="fieldlabels" for="city">City: *</label>
+                                <input placeholder="City" type="text" id="city" class="floatLabel" name="city"
+                                    maxlength="30">
+
+
+                                <label class="fieldlabels" for="post-code">Postal Code: *</label>
+                                <input placeholder="Postal Code" type="number" id="post-code" class="floatLabel"
+                                    name="post-code" maxlength="5">
+
+
+
+
+                            </div> <input type="button" name="next" class="next action-button" value="Next" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Application Detail:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 2 - 4</h2>
+                                    </div>
+                                </div>
+
+                                <label class="fieldlabels" for="ssc">SSC Marks: *</label>
+                                <input placeholder="XXXX/1100" type="number" id="ssc" class="floatLabel" name="ssc"
+                                    maxlength="4">
+
+                                <label class="fieldlabels" for="hssc">HSSC Marks: *</label>
+                                <input placeholder="XXXX/1100" type="number" id="hssc" class="floatLabel" name="hssc"
+                                    maxlength="4">
+
+                                <label class="fieldlabels" for="ntn">Parent/Guardian NTN Number: *</label>
+                                <input placeholder="XXXXX-XXXXXXX-X" type="text" id="ntn"
+                                    pattern="\d\d\d\d\d-\d\d\d\d\d\d\d-\d" class="floatLabel" name="ntn"
+                                    maxlength="15">
+
+                                <label class="fieldlabels" for="bill">Electricity Bill Collective: *</label>
+                                <input placeholder="Total Accumulative Electricity Bills" type="number" id="bill"
+                                    class="floatLabel" name="bill" maxlength="">
+
+                                <label class="fieldlabels" for="bill">Gas Bill Collective: *</label>
+                                <input placeholder="Total Accumulative Gas Bills" type="number" id="gbill"
+                                    class="floatLabel" name="gbill" maxlength="10">
+
+                                <label class="fieldlabels" for="income">Monthly Income Collective: *</label>
+                                <input placeholder="Total Net Monthly Income" type="number" id="income"
+                                    class="floatLabel" name="income" maxlength="10">
+
+                                <label class="fieldlabels" for="expense">Monthly Expenses: *</label>
+                                <input placeholder="Total Accumulative Monthly Expenditure" type="number" id="expense"
+                                    class="floatLabel" name="expense" maxlength="10">
+
+                                <label class="fieldlabels" for="area">Property Area: *</label>
+                                <input placeholder="XXXX sq. ft" type="number" id="area" class="floatLabel" name="area"
+                                    maxlength="6">
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Property Type</label>
+                                    </div>
+                                    <select class="custom-select" id="propertyType" name="prop-type0">
+                                        <option selected>Choose...</option>
+                                        <option value="owned">Owned</option>
+                                        <option value="rented">Rented</option>
+                                    </select>
+                                </div>
+
+                                    <label class="fieldlabels" for="area">Owned Asset Valuation: *</label>
+                                    <input placeholder="XXXXXXX PKR" type="number" id="assets" class="floatLabel"
+                                        name="assets" maxlength="10">
+
+                                    <label class="fieldlabels" for="area">Monthly Siblings Education Fee: *</label>
+                                    <input placeholder="XXXXXXX PKR" type="number" id="siblingfee" class="floatLabel"
+                                        name="siblingfee" maxlength="9">
+
+                                    <label class="fieldlabels" for="siblings">Number of Siblings</label>
+                                    <input placeholder="Number of Siblings" type="number" id="siblings"
+                                        class="floatLabel" name="siblings" maxlength="3">
+
+
+
+
+                                </div> <input type="button" name="next" class="next action-button" value="Next" />
+                                <input type="button" name="previous" class="previous action-button-previous"
+                                    value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Please describe your needs</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div>
+                                </div>
+                                <label for="comments">Comments</label>
+                                <textarea placeholder="Why you need Fiancial Assistance?" name="comments"
+                                    class="floatLabel" id="comments" maxlength="500"></textarea>
+                                <label class="fieldlabels">Upload Your Photo:</label>
+                                <input type="file" name="pic" accept="image/*">
+                                <label class="fieldlabels">Upload Electricity Bill:</label>
+                                <input type="file" name="dbill" accept="image/*">
+                                <label class="fieldlabels">Upload Gas Bill:</label>
+                                <input type="file" name="dgbill" accept="image/*">
+                                <label class="fieldlabels">Upload Transcript:</label>
+                                <input type="file" name="transcript" accept="image/*">
+                            </div>
+                            <input type="button" value="submit" name="submit" class="next action-button" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Finish:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 4 - 4</h2>
+                                    </div>
+                                </div> <br><br>
+                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                                <div class="row justify-content-center">
+                                    <div class="col-3"> <img src="https://i.ibb.co/wKZ0v7d/success.png"
+                                            class="fit-image">
+                                    </div>
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                        <button href="{% url 'userdash' %}" type="submit" value="Submit" name="submit" class="btn btn-secondary btn-sm" value="Previous">Goto Home</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script
+    src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script id="rendered-js">
+
+    $(document).ready(function () {
+        function validateField(field, errorElement, regex) {
+            if (field.val() === "") {
+                errorElement.hide();
+                field.removeClass("invalid");
+            } else if (regex.test(field.val())) {
+                errorElement.hide();
+                field.removeClass("invalid");
+            } else {
+                errorElement.show();
+                field.addClass("invalid");
+            }
+        }
+
+
+        function validateNextButton() {
+            const allInputs = $("input.floatLabel");
+            const invalidInputs = allInputs.filter(".invalid");
+            $("input[name='next']").prop("disabled", invalidInputs.length > 0);
+        }
+        function valueChanged() {
+            if (document.getElementById("check-1").checked == true) {
+                document.getElementById("check-1").value = 1;
+                document.getElementById("check-2").value = 0;
+            } else {
+                document.getElementById("check-1").value = 0;
+                document.getElementById("check-2").value = 1;
+            }
+
+        }
+
+        const username = $("#username");
+        const usernameError = $("<span class='error'>Please enter a valid name</span> <br><br>").insertAfter(username).hide();
+        username.on("input", function () {
+            validateField(username, usernameError, /^[a-zA-Z\s]+$/);
+            validateNextButton();
+        });
+
+        const roll = $("#roll");
+        const rollError = $("<span class='error'>Please enter a valid roll number</span> <br><br>").insertAfter(roll).hide();
+        roll.on("input", function () {
+            validateField(roll, rollError, /^\d\dF-\d\d\d\d$/);
+            validateNextButton();
+        });
+
+        const cgpa = $("#cgpa");
+        const cgpaError = $("<span class='error'>Please enter a valid CGPA</span> <br><br>").insertAfter(cgpa).hide();
+        cgpa.on("input", function () {
+            validateField(cgpa, cgpaError, /^\d(\.\d\d?)?$/);
+            validateNextButton();
+        });
+
+        const fname = $("#fname");
+        const fnameError = $("<span class='error'>Please enter your father's name</span> <br><br>").insertAfter(fname).hide();
+        fname.on("input", function () {
+            validateField(fname, fnameError, /^[a-zA-Z\s]+$/);
+            validateNextButton();
+        });
+
+        const phone = $("#phone");
+        const phoneError = $("<span class='error'>Please enter a valid phone number</span> <br><br>").insertAfter(phone).hide();
+        phone.on("input", function () {
+            validateField(phone, phoneError, /^[0-9]{1,11}$/);
+            validateNextButton();
+        });
+        const phone2 = $("#phone2");
+        const phoneError2 = $("<span class='error'>Please enter a valid phone number</span> <br><br>").insertAfter(phone2).hide();
+        phone2.on("input", function () {
+            validateField(phone2, phoneError2, /^[0-9]{1,11}$/);
+            validateNextButton();
+        });
+
+        const cnic = $("#cnic");
+        const cnicError = $("<span class='error'>Please enter a valid CNIC</span> <br><br>").insertAfter(cnic).hide();
+        cnic.on("input", function () {
+            validateField(cnic, cnicError, /^\d\d\d\d\d-\d\d\d\d\d\d\d-\d$/);
+            validateNextButton();
+        });
+        const email = $("#email");
+        const emailError = $("<span class='error'>Please enter a valid email</span> <br><br>").insertAfter(email).hide();
+        email.on("input", function () {
+            validateField(email, emailError, /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/);
+            validateNextButton();
+        });
+
+        const address = $("#address");
+        const addressError = $("<span class='error'>Please enter your address</span> <br><br>").insertAfter(address).hide();
+        address.on("input", function () {
+            validateField(address, addressError, /^[a-zA-Z\s]*$/);
+            validateNextButton();
+        });
+
+        const city = $("#city");
+        const cityError = $("<span class='error'>Please enter your city</span> <br><br>").insertAfter(city).hide();
+        city.on("input", function () {
+            validateField(city, cityError, /^[a-zA-Z\s]*$/);
+            validateNextButton();
+        });
+
+        const postCode = $("#post-code");
+        const postCodeError = $("<span class='error'>Please enter your postal code</span> <br><br>x ").insertAfter(postCode).hide();
+        postCode.on("input", function () {
+            validateField(postCode, postCodeError, /^\d{1,15}$/);
+            validateNextButton();
+        });
+
+
+        const ssc = $("#ssc");
+        const sscError = $("<span class='error'>Please enter correct marks</span> <br><br>x ").insertAfter(ssc).hide();
+        ssc.on("input", function () {
+            validateField(ssc, sscError, /^(?!0)(10[0-9]{2}|1100|[1-9][0-9]{0,2})$/);
+            validateNextButton();
+        });
+
+        const hssc = $("#hssc");
+        const hsscError = $("<span class='error'>Please enter correct marks</span> <br><br>x ").insertAfter(hssc).hide();
+        hssc.on("input", function () {
+            validateField(hssc, hsscError, /^(?!0)(10[0-9]{2}|1100|[1-9][0-9]{0,2})$/);
+            validateNextButton();
+        });
+
+
+        const ntn = $("#ntn");
+        const ntnError = $("<span class='error'>Please enter correct ntn number</span> <br><br>x ").insertAfter(ntn).hide();
+        ntn.on("input", function () {
+            validateField(ntn, ntnError, /^\d{5}-\d{7}-\d$/);
+            validateNextButton();
+        });
+
+        const bill = $("#bill");
+        const billError = $("<span class='error'>Please enter correct electricity bill</span> <br><br>x ").insertAfter(bill).hide();
+        bill.on("input", function () {
+            validateField(bill, billError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const gbill = $("#gbill");
+        const gbillError = $("<span class='error'>Please enter correct gas bill</span> <br><br>x ").insertAfter(gbill).hide();
+        gbill.on("input", function () {
+            validateField(gbill, gbillError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const income = $("#income");
+        const incomeError = $("<span class='error'>Please enter correct income</span> <br><br>x ").insertAfter(income).hide();
+        income.on("input", function () {
+            validateField(income, incomeError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const expense = $("#expense");
+        const expenseError = $("<span class='error'>Please enter correct expense</span> <br><br>x ").insertAfter(expense).hide();
+        expense.on("input", function () {
+            validateField(expense, expenseError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const area = $("#area");
+        const areaError = $("<span class='error'>Please enter correct area</span> <br><br>x ").insertAfter(area).hide();
+        area.on("input", function () {
+            validateField(area, areaError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const status = $("#status");
+        const statusError = $("<span class='error'>Please enter correct status</span> <br><br>x ").insertAfter(status).hide();
+        status.on("input", function () {
+            validateField(status, statusError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const assets = $("#assets");
+        const assetsError = $("<span class='error'>Please enter correct assets</span> <br><br>x ").insertAfter(assets).hide();
+        assets.on("input", function () {
+            validateField(assets, assetsError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const siblingfee = $("#siblingfee");
+        const siblingfeeError = $("<span class='error'>Please enter correct sibling fee</span> <br><br>x ").insertAfter(siblingfee).hide();
+        siblingfee.on("input", function () {
+            validateField(siblingfee, siblingfeeError, /^\d+(\.\d+)?$/);
+            validateNextButton();
+        });
+
+        const siblings = $("#siblings");
+        const siblingsError = $("<span class='error'>Please enter correct number of siblings</span> <br><br>x ").insertAfter(siblings).hide();
+        siblings.on("input", function () {
+            validateField(siblings, siblingsError, /^\d{1,50}$/);
+            validateNextButton();
+        });
+
+        const comments = $("#comments");
+        const commentsError = $("<span class='error'>Please enter valid comments</span> <br><br>x ").insertAfter(comments).hide();
+        comments.on("input", function () {
+            validateField(comments, commentsError, /^[a-zA-Z0-9\s\S]{1,499}$/);
+            validateNextButton();
+        });
+
+
+
+
+        // You can continue adding validation for other fields in the same manner.
+
+        // Initialize validation and disable the next button initially.
+        username.trigger("input");
+    });
+
+
+    $(document).ready(function () {
+
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+
+        setProgressBar(current);
+
+        $(".next").click(function () {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+
+                    next_fs.css({ 'opacity': opacity });
+                },
+                duration: 500
+            });
+
+            setProgressBar(++current);
+        });
+
+        $(".previous").click(function () {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+
+                    previous_fs.css({ 'opacity': opacity });
+                },
+                duration: 500
+            });
+
+            setProgressBar(--current);
+        });
+
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percent = percent.toFixed();
+            $(".progress-bar").
+                css("width", percent + "%");
+        }
+
+        $(".submit").click(function () {
+            return false;
+        });
+
+    });
+
+</script>
+
+</html>

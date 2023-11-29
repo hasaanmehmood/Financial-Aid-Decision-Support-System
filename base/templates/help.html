@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="help-and-support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    
+    
+     <style>
+      
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+body{
+  min-height: 100vh;
+  width: 100%;
+  background:  #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('Media/fast_3.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+.container{
+  width: 85%;
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.container .content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .content .left-side{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+.content .left-side::before{
+  content: '';
+  position: absolute;
+  height: 70%;
+  width: 2px;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #afafb6;
+}
+.content .left-side .details{
+  margin: 14px;
+  text-align: center;
+}
+.content .left-side .details i{
+  font-size: 30px;
+  color: #22926e;
+  margin-bottom: 10px;
+}
+.content .left-side .details .topic{
+  font-size: 18px;
+  font-weight: 500;
+}
+.content .left-side .details .text-one,
+.content .left-side .details .text-two{
+  font-size: 14px;
+  color: #000000;
+}
+
+
+.container .content .right-side{
+  width: 75%;
+  margin-left: 75px;
+}
+.content .right-side .topic-text{
+  font-size: 23px;
+  font-weight: 600;
+  color: #22926e;
+}
+.right-side .input-box{
+  height: 50px;
+  width: 100%;
+  margin: 12px 0;
+}
+.right-side .input-box input,
+.right-side .input-box textarea{
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #F0F1F8;
+  border-radius: 6px;
+  padding: 0 15px;
+  resize: none;
+}
+.right-side .message-box{
+  min-height: 110px;
+}
+.right-side .input-box textarea{
+  padding-top: 6px;
+}
+.right-side .button{
+  display: inline-block;
+  margin-top: 12px;
+}
+.right-side .button input[type="button"]{
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #3e2093;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button input[type="button"]:hover{
+  background: #5029bc;
+}
+
+@media (max-width: 950px) {
+  .container{
+    width: 90%;
+    padding: 30px 40px 40px 35px ;
+  }
+  .container .content .right-side{
+   width: 75%;
+   margin-left: 55px;
+}
+}
+@media (max-width: 820px) {
+  .container{
+    margin: 40px 0;
+    height: 100%;
+  }
+
+  
+  .container .content{
+    flex-direction: column-reverse;
+  }
+ .container .content .left-side{
+   width: 100%;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+   flex-wrap: wrap;
+ }
+ .container .content .left-side::before{
+   display: none;
+   
+ }
+ 
+ .container .content .right-side{
+   width: 100%;
+   margin-left: 0;
+ }
+}
+.container .content .left-side .details i:hover {
+  transform: scale(1.2);
+  }
+.right-side .input-box input:focus,
+.right-side .input-box textarea:focus {
+  
+  border: 2px solid #22926e;
+  
+  
+}
+input[type="text"]:hover::placeholder,
+textarea:hover::placeholder {
+  color: #22926e;
+}
+
+
+     </style>
+  
+   
+<body>
+  
+  <div class="container">
+    
+    <a href="{% url 'Landing' %}" style="background: #22926e;color: #fff; "  onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='none';" type="button" class="btn btn-rounded btn-floating">
+      <i class="fas fa-angle-left"></i>
+    </a>
+    <div class="content">
+      <div class="left-side">
+    
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">FAST National University of Computer and Emerging Sciences</div>
+          <div class="text-two">Sargodha Rd, Faisalabad</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">(041) 111 128 128</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">admissions.cfd@nu.edu.pk</div>
+        </div>
+      </div>
+      <div class="right-side">
+         <!-- Bootstrap alert code -->
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+        Please enter only alphabets in the name field.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+        Please enter a valid email address.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+        Please enter a valid email address with an accepted provider (e.g. gmail, outlook, yahoo).
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="topic-text">Send us a message</div>
+        <p>Kindly State your query with required explanation or problem you are facing.</p>
+      <form method="post" action="#">
+        {% csrf_token %} 
+        <div class="input-box">
+          <input type="text" name="name" type="name" placeholder="Enter your name" required>
+        </div>
+        <div class="input-box">
+          <input type="text" name="email" type="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-box message-box">
+          <textarea name="description" placeholder="Enter your message" type="text" required></textarea>
+        </div>
+        <div class="button">
+          <button type="submit" style="padding :8px 16px; background: #22926e;display: inline-block;
+          margin-top: 12px;color: #fff; border-radius:6px; font-size:18px; outline:none; border:none;"  onmouseover="this.style.filter='brightness(110%)';" onmouseout="this.style.filter='brightness(100%)';;" value="Submit" >Submit </button>
+          
+          
+        </div>
+      </form>
+     
+    </body>
+      <script>
+        // Get the form element
+        const form = document.querySelector('form');
+      
+        // Get the alert elements
+        const nameAlert = document.querySelector('.alert:nth-of-type(1)');
+        const emailAlert = document.querySelector('.alert:nth-of-type(2)');
+        const providerAlert = document.querySelector('.alert:nth-of-type(3)');
+      
+        // Function to hide the alert messages
+        const hideAlert = (alert) => {
+          alert.style.display = 'none';
+        };
+      
+        // Add an event listener to the form submit event
+        form.addEventListener('submit', (event) => {
+          // Prevent the default form submit action
+          event.preventDefault();
+      
+          // Get the name and email input values
+          const nameInput = form.elements.name;
+          const emailInput = form.elements.email;
+      
+          // Regex patterns to validate name and email
+          const namePattern = /^[a-zA-Z\s]+$/;
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+          // Validate name
+          if (!namePattern.test(nameInput.value)) {
+            nameAlert.style.display = 'block';
+            setTimeout(() => {
+              hideAlert(nameAlert);
+            }, 4000); // hide after 4 seconds
+            return;
+          }
+      
+          // Validate email
+          if (!emailPattern.test(emailInput.value)) {
+            emailAlert.style.display = 'block';
+            setTimeout(() => {
+              hideAlert(emailAlert);
+            }, 4000); // hide after 4 seconds
+            return;
+          }
+      
+          // Check email provider
+          const emailProvider = emailInput.value.split('@')[1];
+          const acceptedProviders = ['gmail.com', 'outlook.com', 'yahoo.com', 'nu.edu.pk', 'icloud.com', 'hotmail.com', 'live.com', 'aol.com', 'msn.com', 'ymail.com', 'proton', 'zoho.com'];
+      
+          if (!acceptedProviders.includes(emailProvider)) {
+            providerAlert.style.display = 'block';
+            setTimeout(() => {
+              hideAlert(providerAlert);
+            }, 4000); // hide after 4 seconds
+            return;
+          }
+      
+          // Submit the form if all validations pass
+          form.submit();
+        });
+      
+      </script>
+      

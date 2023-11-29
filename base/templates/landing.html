@@ -1,0 +1,403 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FADSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Themesdesign" name="The Brainiacs" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}" />
+    <!-- css -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!--Themify Icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themify-icons.css' %}" />
+
+    <link href="{% static 'css/style.css' %}"rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/colors/green.css' %}" id="color-opt">
+</head>
+
+<body>
+
+     <!-- STRAT NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark" id="navbar">
+        <div class="container">
+            <b><a class="navbar-brand" href="#"><span class="fw-bold">FADSS</span></a></b>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-menu"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto" id="navbar-navlist">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#facility">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class="text-right list-unstyled list-inline mb-0 nav-social">
+                        <li class="list-inline-item text-white nav-number"><i class="ti-mobile"></i> <span>(041) 111 128 128</span></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/FASTfsd/" class="facebook"><i class="ti-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+
+    <!-- START HOME -->
+    <section class="section bg-home-full vh-100 bg-home" id="home">
+        <div class="home-center">
+            <div class="home-desc-center">
+                <div class="container slidero">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="text-center">
+                                <h1 class="text-white home-title mb-0">Welcome to Financial Aid Decision Support System: Gateway to Smarter Financial Futures</h1>
+                                <p class="text-muted home-subtitle-center mx-auto home-subtitle mt-4 mb-0">Discover tailored insights and expert guidance,
+                                     empowering you to make informed decisions and unlock the best financial aid opportunities for educational journey.</p>
+                                <div class="mt-3">
+                                    <a href="{% url 'signup_login' %}" class="btn btn-primary btn-round">Student</a>
+                                    <br>
+                                    <br>
+                                    <a href="{% url 'flogin' %}" class="btn btn-primary btn-round">Faculty</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END HOME -->
+
+    <!-- START FACILITIES -->
+    <section class="section" id="facility">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-12">
+                    <i class="ti-ruler-pencil title-icon text-muted"></i>
+                    <h3 class="title">Best <span class="fw-bold">Facilities</span></h3>
+                    <p class="text-muted mt-3 title-subtitle mx-auto">Fast National University (NU) provides
+                         a range of services through its financial aid system to support eligible students in pursuing their education</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Scholarships</h5>
+                            <p class="services-subtitle text-muted"> Merit-based and need-based scholarships to recognize academic excellence and financial need.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Tuition Fee Waivers</h5>
+                            <p class="services-subtitle text-muted">Reduction or elimination of tuition fees for students with significant financial need.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Student Loans</h5>
+                            <p class="services-subtitle text-muted">Facilitation of student loans through partnerships with financial institutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Work-Study Programs</h5>
+                            <p class="services-subtitle text-muted">Part-time on-campus or affiliated organization employment opportunities for students.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Fee Installment Plans</h5>
+                            <p class="services-subtitle text-muted"> Flexible payment options for students unable to pay full tuition fees upfront.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-4">
+                    <div class="services-box">
+                        <div class="services-icon">
+                            <i class="ti-pin-alt text-primary"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="services-title fw-bold mb-3">Financial Aid Workshops</h5>
+                            <p class="services-subtitle text-muted"> Educational seminars to inform students about available resources and funding opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    </section>
+    <!-- END FACILITIES -->
+
+    <!-- START TEAM-->
+    <section class="section bg-light" id="team">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-12">
+                    <i class="ti-user title-icon text-muted"></i>
+                    <h4 class="title">Our <span class="fw-bold">Team</span></h4>
+                    <p class="text-muted mt-3 title-subtitle mx-auto"><h5>The dedicated founders of a dream turned into reality.</h5></p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="text-center bg-white team-box mt-3 p-5">
+                        <div class="">
+                            <img src="{% static '/images/team/usman.jpg' %}" alt="" class="img-fluid rounded-circle mx-auto d-block">
+                        </div>
+                        <div class="team-name">
+                            <p class="fw-bold mb-0 mt-4">Muhammad Usman</p>
+                            <p class="text-muted mt-4">Usman is a dedicated final-year student working on a financial aid decision support
+                                 system for our project. With a strong analytical mindset and attention to detail, he delivers practical and impactful solutions.</p>
+                        </div>
+                        <div class="">
+                            <ul class="list-inline team-social mt-4 mb-0">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100007545588918"><i class="ti-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/muhammad-usman-8b92091b8/"><i class="ti-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center bg-white team-box mt-3 active p-5">
+                        <div class="">
+                            <img src="{% static '/images/team/hasaan.jpg' %}" alt="" class="img-fluid rounded-circle mx-auto d-block">
+                        </div>
+                        <div class="team-name">
+                            <p class="fw-bold mb-0 mt-4">Hasaan Mehmood</p>
+                            <p class="text-muted mt-4">Hasaan is a motivated student focused on developing a financial aid decision support system for our final year project.
+                                 Combining financial expertise with data analysis skills, they ensure academic and practical requirements are met.</p>
+                        </div>
+                        <div class="">
+                            <ul class="list-inline team-social mt-4 mb-0">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/hasaan.mehmood.9"><i class="ti-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/hasaan-mehmood-6b3223125/"><i class="ti-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center bg-white team-box mt-3 p-5">
+                        <div class="">
+                            <img src="{% static '/images/team/ahad.jpg' %}" alt="" class="img-fluid rounded-circle mx-auto d-block">
+                        </div>
+                        <div class="team-name">
+                            <p class="fw-bold mb-0 mt-4">Ahad Naseer</p>
+                            <p class="text-muted mt-4">Ahad is a proactive final-year student driving the development of our financial aid decision support system.
+                                 With a computer science background and a passion for problem-solving, he delivers an intuitive and reliable solution.</p>
+                        </div>
+                        <div class="">
+                            <ul class="list-inline team-social mt-4 mb-0">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100009007750999"><i class="ti-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/ahad-naseer-001391242/"><i class="ti-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END TEAM -->
+
+    <!-- START Questions -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-12">
+                    <i class="ti-comments title-icon text-muted"></i>
+                    <h3 class="title">Frequently <span class="fw-bold">Asked</span> Questions</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <div class="pl-4 pr-4">
+                        <div class="mt-4">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. What is financial aid, and how does it work at FAST National University?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">Financial aid refers to financial assistance provided to students who need help paying for their education. 
+                                    At FAST National University, financial aid is offered to eligible students in the form of scholarships, grants, loans, 
+                                    and work-study programs.</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. Who is eligible to apply for financial aid at FAST National University?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">Students who demonstrate financial need, academic merit, or other criteria may be eligible for 
+                                    financial aid at FAST National University. Eligibility requirements may vary based on the type of financial aid.</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. How can I apply for financial aid at FAST National University Pakistan, and what documents do I need to submit?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">Students can apply for financial aid by completing the FAST National University financial aid application and submitting it 
+                                    along with supporting documents, such as proof of income, academic transcripts, and personal statements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="pl-4 pr-4">
+                        <div class="mt-4">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. What is the deadline for submitting a financial aid application at FAST National University?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">The deadline for submitting a financial aid application may vary based on the type of financial aid and the academic year.
+                                     Students are encouraged to check with the FAST National University financial aid office for specific deadlines.</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. How are financial aid determined at FAST National University?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">Financial aid are determined based on a combination of factors, including financial need, 
+                                    academic performance, and availability of funds. The specific criteria for awarding financial aid may vary based on the type of financial aid.</p>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <div class="">
+                                <h5 class="mb-0 f-18 font-weight-600">Q. Can I apply for financial aid every semester or academic year at FAST National University?</h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-muted">Yes, students can apply for financial aid every semester or academic year at FAST National University. 
+                                    However, eligibility for financial aid may be re-evaluated each year based on the student's financial need and academic performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END Questions -->
+
+    <!-- START CTA -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h3 class="mb-4">You have another questions or need help?</h3>
+                        <div class="">
+                            <a href="{% url 'help' %}" class="btn btn-round btn-primary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END TEAM -->
+
+
+
+    <!-- STRT FOOTER -->
+    <section class="section footer">
+        <!-- <div class="bg-overlay"></div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <ul class="list-inline social mb-0">
+                            <li class="list-inline-item"><a href="https://www.facebook.com/FASTfsd/" class="social-icon text-muted"><i
+                                        class="ti-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="social-icon text-muted"><i
+                                        class="ti-twitter-alt"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.linkedin.com/company/fastcfd/" class="social-icon text-muted"><i
+                                        class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-terms">
+                        <ul class="mb-0 list-inline text-center mt-4 pt-2">
+                            <li class="list-inline-item"><a href="#" class="text-muted">Terms & Condition</a></li>
+                            <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="#contact" class="text-muted">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-2 text-center">
+                        <p class="copy-rights text-muted mb-0">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © FADSS. Design by The Brainiacs
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FOOTER -->
+
+
+    <!-- Back to top -->
+
+    <a href="#home" data-scroll class="back-to-top" id="back-to-top"> <i class="ti-angle-up"> </i> </a>
+
+
+    <!-- javascript -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'js/gumshoe.polyfills.min.js' %}"></script>
+    <!--Partical js-->
+    <script src="{% static 'js/particles.js' %}"></script>
+    <script src="{% static 'js/particles.app.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>View Status</title>
+    <style>
+        body {
+            color: #000;
+            overflow-x: hidden;
+            height: 100%;
+            background-color: #181b1a;
+            background-repeat: no-repeat;
+        }
+
+        .card {
+            z-index: 0;
+            background-color: #ffffff;
+            padding-bottom: 30px;
+            margin-top: 90px;
+            margin-bottom: 90px;
+            border-radius: 10px;
+        }
+
+        .top {
+            padding-top: 40px;
+            padding-left: 13% !important;
+            padding-right: 13% !important;
+        }
+
+        /*Icon progressbar*/
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: #455A64;
+            padding-left: 0px;
+            margin-top: 30px;
+        }
+
+        #progressbar li {
+            list-style-type: none;
+            font-size: 13px;
+            width: 25%;
+            float: left;
+            position: relative;
+            font-weight: 400;
+        }
+
+        #progressbar .step0:before {
+            font-family: FontAwesome;
+            content: "\f10c";
+            color: #fff;
+        }
+
+        #progressbar li:before {
+            width: 40px;
+            height: 40px;
+            line-height: 45px;
+            display: block;
+            font-size: 20px;
+            background: #C5CAE9;
+            border-radius: 50%;
+            margin: auto;
+            padding: 0px;
+        }
+
+        /*ProgressBar connectors*/
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 12px;
+            background: #C5CAE9;
+            position: absolute;
+            left: 0;
+            top: 16px;
+            z-index: -1;
+        }
+
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            left: -50%;
+        }
+
+        #progressbar li:nth-child(2):after,
+        #progressbar li:nth-child(3):after {
+            left: -50%;
+        }
+
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            position: absolute;
+            left: 50%;
+        }
+
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        /*Color number of the step and the connector before it*/
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #2dc997;
+        }
+
+        #progressbar li.active:before {
+            font-family: FontAwesome;
+            content: "\f00c";
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .icon-content {
+            padding-bottom: 20px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .icon-content {
+                width: 50%;
+            }
+        }
+
+
+        @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+        @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+        .fa-2x {
+            font-size: 2em;
+        }
+
+        .fa {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 30px;
+        }
+
+
+        .main-menu:hover,
+        nav.main-menu.expanded {
+            width: 250px;
+            overflow: visible;
+        }
+
+        .main-menu {
+            background-color: rgba(0, 0, 0, 0.9);
+
+            border-right: 0px solid #e5e5e5;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            width: 60px;
+            overflow: hidden;
+            -webkit-transition: width .05s linear;
+            transition: width .05s linear;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            z-index: 1000;
+        }
+
+
+        .main-menu>ul {
+            margin: 7px 0;
+        }
+
+        .main-menu li {
+            padding-top: 10px;
+            position: relative;
+            display: block;
+            width: 250px;
+        }
+
+        .main-menu li>a {
+
+            position: relative;
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 0;
+            color: #ecf0f1;
+            font-family: arial;
+            font-size: 14px;
+            text-decoration: none;
+            -webkit-transform: translateZ(0) scale(1, 1);
+            -webkit-transition: all .1s linear;
+            transition: all .1s linear;
+
+        }
+
+        .main-menu .nav-icon {
+            position: relative;
+            display: table-cell;
+            width: 60px;
+            height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+        }
+
+        .main-menu .nav-text {
+            padding-right: 14px;
+            position: relative;
+            display: table-cell;
+            vertical-align: middle;
+            width: 190px;
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        .main-menu>ul.logout {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .no-touch .scrollable.hover {
+            overflow-y: hidden;
+        }
+
+        .no-touch .scrollable.hover:hover {
+            overflow-y: auto;
+            overflow: visible;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: none;
+        }
+
+        nav {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        nav ul,
+        nav li {
+            outline: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-menu li:hover>a,
+        nav.main-menu li.active>a,
+        .dropdown-menu>li>a:hover,
+        .dropdown-menu>li>a:focus,
+        .dropdown-menu>.active>a,
+        .dropdown-menu>.active>a:hover,
+        .dropdown-menu>.active>a:focus,
+        .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+        .dashboard-page nav.dashboard-menu ul li.active a {
+            color: #2dc997;
+
+        }
+
+        .area {
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
+
+        @font-face {
+            font-family: 'Titillium Web';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+        }
+
+
+        /*--------------------------------------------------------------
+# Disable AOS delay on mobile
+--------------------------------------------------------------*/
+        @media screen and (max-width: 768px) {
+            [data-aos-delay] {
+                transition-delay: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="main-menu">
+        <ul>
+            </br>
+            <li>
+                <a href="{% url 'userdash' %}">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Home</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'applyaid' %}">
+                    <i class="fa fa-id-badge fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Apply Aid</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'viewprofile' %}">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>View Profile</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li class="has-subnav">
+                <a href="{% url 'viewstatus' %}">
+                    <i class="fa fa-id-card fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>View Status</h6>
+                    </span>
+                </a>
+
+            </li>
+            </br>
+            <li>
+                <a href="{% url 'returnloan' %}">
+                    <i class="fa fa-credit-card fa-2x"></i>
+                    <span class="nav-text">
+                        <h6>Return Loan</h6>
+                    </span>
+                </a>
+            </li>
+            </br>
+            <ul class="logout">
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            <h6>Log Out</h6>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+    </nav>
+
+    <div class="container px-1 px-md-4 py-5 mx-auto">
+        <div class="card">
+            <div class="row d-flex justify-content-between px-3 top">
+                <div class="d-flex">
+                    <h3><b>Application Status</b></h3>
+                </div>
+                <div class="d-flex flex-column text-sm-right">
+                    <p class="mb-0">In case of delay</p>
+                    <p>Send us a mail <span class="font-weight-bold">fadss@support.com</span></p>
+                </div>
+            </div>
+
+            <!-- Add class 'active' to progress -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-12">
+                    <ul id="progressbar" class="text-center">
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                        <li class="active step0"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row justify-content-between top">
+                <div class="row d-flex icon-content">
+                    <!--<img class="icon" src="https://i.imgur.com/9nnc9Et.png">-->
+                    <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight-bold">Account<br>Created</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content">
+                    <!--<img class="icon" src="https://i.imgur.com/u1AzR7w.png">-->
+                    <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight-bold">Applied<br>For Aid</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content">
+                    <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight-bold">Application<br>Processing</p>
+                    </div>
+                </div>
+                <div class="row d-flex icon-content">
+                    <img class="icon" src="https://www.freeiconspng.com/uploads/results-icon-png-7.png">
+                    <div class="d-flex flex-column">
+                        <p class="font-weight-bold">Results<br>Declared
+                            {%if status == 1 %}
+                        <h6>Approved</h6>
+                        {%elif status == 2 %}
+                        <h6>Rejected</h6>
+                        {%else%}
+                        <h6>Pending</h6>
+                        <br>
+                        <br>
+                        {%endif%}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        // Define the function here
+        function updateProgressBar(applicationstatus) {
+            const progressBar = document.querySelector('#progressbar');
+            const steps = progressBar.querySelectorAll('li');
+
+            // Remove 'active' class from all steps
+            steps.forEach((step) => {
+                step.classList.remove('active');
+            });
+
+            // Add 'active' class to the appropriate steps
+            if (applicationstatus >= 0) {
+                steps[0].classList.add('active');
+            }
+            if (applicationstatus >= 1) {
+                steps[1].classList.add('active');
+            }
+            if (applicationstatus >= 2) {
+                steps[2].classList.add('active');
+            }
+            if (applicationstatus >= 3) {
+                steps[3].classList.add('active');
+            }
+        }
+
+        // Call the function with the appropriate argument
+        {% if applicationstatus is not None %}
+        updateProgressBar({{ applicationstatus }});
+    {% endif %}
+      });    
+</script>
+
+
+</html>
